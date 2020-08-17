@@ -81,13 +81,14 @@ def precipitation():
 
     return jsonify(rain_totals)
 
-#########################################################################################
+
 @app.route("/api/v1.0/stations")
 def stations():
     stations_query = session.query(Station.name, Station.station)
     stations = pd.read_sql(stations_query.statement, stations_query.session.bind)
     return jsonify(stations.to_dict())
-#########################################################################################
+
+
 @app.route("/api/v1.0/tobs")
 def tobs():
     """Return a list of temperatures for prior year"""
@@ -109,7 +110,8 @@ def tobs():
         temperature_totals.append(row)
 
     return jsonify(temperature_totals)
-#########################################################################################
+
+
 @app.route("/api/v1.0/<start>")
 def trip1(start):
 
@@ -123,7 +125,7 @@ def trip1(start):
     trip = list(np.ravel(trip_data))
     return jsonify(trip)
 
-#########################################################################################
+
 @app.route("/api/v1.0/<start>/<end>")
 def trip2(start,end):
 
